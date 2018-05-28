@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Ask Question - My Q&A</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="{% static 'Q&A.png' %}" rel="shortcut icon" type="image/x-icon">
+        <link href="{% static 'Q&A.png' %}" rel="apple-touch-icon">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>                        
+                        </button>
+                        <a class="navbar-brand" href="/"><img src="{% static 'Q&A.png' %}" style="width: 25px; height: 25px;"></a>
+                      </div>
+                      <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                          <li class="active"><a href="/">Home</a></li>
+                          <li><a href="/ask-question">Ask A Question</a></li>
+                         <!-- <li><a href="#">Projects</a></li>
+                          <li><a href="#">Contact</a></li>-->
+                        </ul>
+                        <!--<ul class="nav navbar-nav navbar-right">
+                          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>-->
+                      </div>
+                    </div>
+                  </nav>
+                  <div class="container">
+                        <h1>Ask a Question</h1>
+                        <p>Type your question below. You can also use Markdown to help format your question.</p>
+                        <form class="" action="ask-question" method="post">
+                                {% csrf_token %}
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" name="title" value="" autocomplete="off" placeholder="What's your question's title?">
+                            </div>
+                            <div class="form-group">
+                                    <textarea class="form-control" name="question" rows="8" cols="80" placeholder="What's your question?"></textarea>                            
+                                </div>
+                           <div class="form-group">
+                               <input type="text" name="posted_by" value="" autocomplete="off" placeholder="Enter your name ..." class="form-control">
+                           </div>
+                           
+                            <input type="submit" name="ask" value="Ask Question" class="btn btn-primary">
+                          </form>
+                          {% if error %}
+                          <p class="error">{{ error }}</p>
+                      {% endif %}
+                  </div>
+    
+    </body>
+</html>
